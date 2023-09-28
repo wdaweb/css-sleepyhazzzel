@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>針筒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *::before,
+        ::after {
+            box-sizing: border-box;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.25) 60%, transparent 100%);
+        }
+
+        .fixed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 最細的墊在下面 */
+        .thin {
+            width: 550px;
+            height: 70px;
+            border: 1px solid #999;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .thin::before,
+        .thin::after {
+            content: '';
+            position: absolute;
+        }
+
+        /* 這是針筒最左邊那塊 */
+        .thin::before {
+            width: 40px;
+            height: 100px;
+            border-radius: 10%;
+            border: 1px solid #999;
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+        }
+
+        /* 這是針 */
+        .thin::after {
+            width: 100px;
+            height: 0;
+            top: 50%;
+            left: 100%;
+            border: 0.5px solid #333;
+        }
+
+        /* 這是遮色片 */
+        .white {
+            width: 450px;
+            height: 110px;
+            background-color: #fff;
+        }
+
+        /* 這是最大的長方形 */
+        .mid {
+            width: 450px;
+            height: 110px;
+            border: 1px solid #999;
+        }
+
+        .mid::before,
+        .mid::after {
+            content: '';
+            position: absolute;
+        }
+
+        /* 這個是刻度 */
+        .mid::before {
+            width: 450px;
+            height: 15px;
+            left: -1px;
+            /* 不知道為什麼就是對不齊 */
+            background-image: linear-gradient(to right, #999 10%, transparent 10%);
+            background-size: 15px 15px;
+            /* background-repeat: repeat-x; */
+            z-index: 1;
+        }
+
+        /* 這是黃色區塊 */
+        .mid::after {
+            width: 225px;
+            height: 108px;
+            background-color: #ffffaa;
+            right: 0;
+        }
+
+        .text {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #999;
+            position: absolute;
+            bottom: 0;
+        }
+
+        /* 這是黑色區塊 */
+        .black {
+            width: 45px;
+            height: 110px;
+            background-color: #000;
+            z-index: 2;
+        }
+
+        /* 這是漸層陰影 */
+        .gradient {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.25) 60%, transparent 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fixed thin gradient"></div>
+    <div class="fixed white"></div>
+    <div class="fixed mid gradient">
+        <div class="text">Made in Taiwan</div>
+    </div>
+    <div class="fixed black"></div>
+</body>
+
+</html>
